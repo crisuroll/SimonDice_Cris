@@ -1,2 +1,3 @@
-# SimonDice_Cris
-Repositorio para almacenar el proyecto de la 2ªEv de Programación.
+# Simón dice
+Repositorio para almacenar el proyecto de la 2ª Evaluación de Programación.
+* v1
