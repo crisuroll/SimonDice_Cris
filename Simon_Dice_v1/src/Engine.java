@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+/**
+ * Clase Engine. Contiene el motor del juego Simon Dice.
+ * @author crisuroll
+ */
 public class Engine {
 
 	// Escaner
@@ -7,8 +11,7 @@ public class Engine {
 	Scanner sc2 = new Scanner(System.in);
 
 	/**
-	 * Tipo enum tColores. Guarda los colores disponibles para la secuencia de Simon
-	 * Dice.
+	 * Tipo enum tColores. Guarda los colores disponibles para la secuencia de Simon Dice.
 	 */
 	public enum tColores {
 		ROJO, VERDE, AZUL, DORADO
@@ -21,11 +24,11 @@ public class Engine {
 	final private int NUM_COLORES_ENUM = numColoresEnum.length;
 
 	/**
-	 * Metodo charToColor. Recibe como parámetro un char que representa el color introducido por el usuario 
-	 * (primera letra) y devuelve su enumeradocorrespondiente.
+	 * Metodo charToColor. Recibe como parametro un char que representa el color introducido por el usuario 
+	 * (primera letra) y devuelve su enumerado correspondiente.
 	 * 
 	 * @param _color representa el caracter del color introducido por el usuario.
-	 * @return
+	 * @return color (tColores)
 	 */
 	public tColores charToColor(Character _color) {
 		tColores color = null;
@@ -45,19 +48,16 @@ public class Engine {
 			case 'd':
 				color = tColores.DORADO;
 			break;
-			
-			default:
-				System.out.println("Color introducido no valido.");
 				
 		}
 		return color;
 	}
 
 	/**
-	 * Metodo intToColor. Recibe como parámetro un número entero y devuelve un color.
+	 * Metodo intToColor. Recibe como parametro un numero entero y devuelve un color.
 	 * 
 	 * @param _numero representa el numero entero
-	 * @return
+	 * @return color (tColores)
 	 */
 	public tColores intToColor(int _numero) {
 		tColores color = null;
@@ -89,7 +89,7 @@ public class Engine {
 	 * color de forma mas amigable para el jugador.
 	 * 
 	 * @param _color representa el color de tipo tColores que queremos mostrar como String
-	 * @return
+	 * @return color (String)
 	 */
 	public String mostrarColor(tColores _color) {
 		String color = "";
@@ -118,10 +118,9 @@ public class Engine {
 
 	/**
 	 * Metodo generarSecuencia. Genera una secuencia de colores de forma aleatoria dentro del intervalo 
-	 * [0, _numColores], la cual se almacenará en el array secuenciaColores.
+	 * [0, _numColores], la cual se almacenara en el array secuenciaColores.
 	 * 
-	 * @param _numColores representa el número de colores que tiene el tipo enumerado tColores.
-	 * @return
+	 * @param _numColores representa el numero de colores que tiene el tipo enumerado tColores.
 	 */
 	public void generarSecuencia(int _numColores) {
 		// Llenar el array con valores aleatorios del enum
@@ -137,7 +136,7 @@ public class Engine {
 	 * 
 	 * @param _index es el indice que el color ocupa dentro del array secuenciaColores.
 	 * @param _color es el color introducido por el usuario.
-	 * @return
+	 * @return res (boolean)
 	 */
 	public boolean comprobarColor(int _index, tColores _color) {
 		boolean res = false;
@@ -173,19 +172,19 @@ public class Engine {
 	}
 
 	/**
-	 * 	Metodo play. Encargado de controlar la secuencia en la que se encuentra el juego, así como de leer de teclado
+	 * 	Metodo play. Encargado de controlar la secuencia en la que se encuentra el juego, asi como de leer de teclado
 	 *  los colores que teclee el usuario y sacar por pantalla los correspondientes mensajes.
 	 */
 	public void play() {
 		// Declaramos e inicializamos las variables.
-		int op = 1; // Opcion del switch
-		int vuelta = 0; // Repeticiones del primer bucle while
-		int index = 0; // Indice correspondiente a su posicion en secuenciaColores[]
-		int numColores = 3; // Numero de colores mostrados en la secuencia
-		char ch = 'a'; // Color introducido por el usuario
-		boolean fallo = false; // Comprueba si el usuario ha fallado (true) o ha acertado (false)
+		int op = 1;
+		int vuelta = 0;
+		int index = 0;
+		int numColores = 3;
+		char ch = 'a';
+		boolean fallo = false;
 		boolean color = false;
-		// Llamamos al metodo menu()
+
 		menu();
 		op = sc.nextInt();
 
@@ -209,22 +208,18 @@ public class Engine {
 						fallo = false;
 						mostrarSecuencia(numColores);
 						
-						System.out.println("Introduce el color numero " + (index + 1) + ": ");
-						
-						while (color == false) {
-							if (sc.hasNext("[^A-Za-z]")) {			
-								System.out.println("Solo puedes introducir letras.");
-								System.out.println("Introduce el color numero " + (index + 1) + ": ");
-								ch = sc.next().charAt(0);
-							} else {
-								color = true;
-							}
-						}
-						
-						color = false;
-						ch = sc.next().charAt(0);
-						// Mientras fallo no sea falso y el índice del array sea menor que el número de colores mostrados...
 						while (!fallo && index < numColores) {
+							while (color == false) {
+								System.out.println("Introduce el color numero " + (index + 1) + ": ");
+								if (sc.hasNext("[^A-Za-z]")) {			
+									System.out.println("Solo puedes introducir letras.");
+									sc.next().charAt(0);
+								} else {
+									ch = sc.next().charAt(0);
+									color = true;
+								}
+							}
+							color = false;
 							fallo = comprobarColor(index, charToColor(ch));
 							if (fallo == true) {
 								System.out.println("Has fallado...");
@@ -232,34 +227,22 @@ public class Engine {
 								vuelta++;
 								vuelta = vuelta + numColores;
 							} else {
-								System.out.println("Correcto!");
+								System.out.println("¡Correcto!");
 								index++;
-								// Si el indice del array es igual que el numero de colores mostrados
+
 								if (index == numColores) {
 									System.out.println("Secuencia adivinada.");
 									fallo = true;
 									numColores++;
-									// Si el indice del array es igual que el numero maximo de colores de la secuencia...
+									
 									if (index == this.MAX_COLORES_SEQ) {
-										System.out.println("Has ganado!");
+										System.out.println("¡Has ganado!");
 										// Forzamos que vuelta sea mayor que el numero de colores para finalizar el juego
 										vuelta++;
 										vuelta = vuelta + numColores;
 									}
-								} else {
-									// Pedimos al usuario el siguiente color, uno a uno...
-									System.out.println("Introduce el color numero " + (index + 1) + ": ");
-									while (color == false) {
-										if (sc.hasNext("[^A-Za-z]")) {			
-											System.out.println("Solo puedes introducir letras.");
-											System.out.println("Introduce el color numero " + (index + 1) + ": ");
-											ch = sc.next().charAt(0);
-										} else {
-											color = true;
-										}
-									}
-									ch = sc.next().charAt(0);
 								}
+
 							}
 								
 						}

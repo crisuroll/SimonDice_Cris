@@ -1,4 +1,7 @@
-
+/**
+ * Clase Jugador. Usada para crear jugadores, almacenando su nombre y puntuacion.
+ * @author crisuroll
+ */
 public class Jugador {
 
 	private String nombre;
