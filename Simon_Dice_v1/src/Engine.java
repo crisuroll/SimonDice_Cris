@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -188,6 +189,7 @@ public class Engine {
 		menu();
 		op = sc.nextInt();
 
+		try {
 		switch (op) {
 			case 0:
 				System.out.println("Saliendo del juego. Hasta la proxima...");
@@ -253,6 +255,9 @@ public class Engine {
 				} while (op != 0);
 			break;
 			default:
+				System.out.println("Opcion introducida no valida.");
+			}
+			} catch (InputMismatchException e) {
 				System.out.println("Opcion introducida no valida.");
 			}
 		System.out.println("Fin del programa.");
