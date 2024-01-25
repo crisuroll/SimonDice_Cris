@@ -18,10 +18,15 @@ public class Engine {
 		ROJO, VERDE, AZUL, DORADO
 	}
 
-	// Atributos
+	/**
+	 * Atributos utilizados.
+	 */
 	final private int MAX_COLORES_SEQ = 12;
 	private tColores[] secuenciaColores = new tColores[MAX_COLORES_SEQ];
+	// Aqui rellenamos un array con todos los valores del enum tColores
 	private tColores[] numColoresEnum = tColores.values();
+	// Y con el array anterior, obtenemos su longitud (el número de colores del enum). Lo vamos a usar al 
+	// llamar al metodo generarSecuencia
 	final private int NUM_COLORES_ENUM = numColoresEnum.length;
 
 	/**
