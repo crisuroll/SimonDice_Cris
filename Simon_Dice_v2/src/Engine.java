@@ -19,11 +19,11 @@ public class Engine {
 	}
 	
 	public enum tModo {
-		FACIL, DIFICIL
+		SALIR, FACIL, DIFICIL
 	}
 
 	// Atributos
-	final private int MAX_COLORES_FACIL = 5;
+	final private int MAX_COLORES_FACIL = 12;
 	final private int MAX_COLORES_DIFICIL = 15;
 	private tColores[] secuenciaColores;
 	private tColores[] numColoresEnum = tColores.values();
@@ -92,29 +92,8 @@ public class Engine {
 			case 7:
 				color = tColores.NARANJA;
 			break;
-			default:
-				System.out.println("Numero introducido no valido.");
 		}
 		return color;
-	}
-	
-	/**
-	 * Metodo intToModo. Recibe como parametro un numero entero, correspondiente a la opcion del switch del menu,
-	 * y devuelve un modo de juego.
-	 * @param _numero
-	 * @return
-	 */
-	public tModo intToModo(int _numero) {
-		tModo modo = null;
-		switch(_numero) {
-			case 1:
-				modo = tModo.FACIL;
-			break;
-			case 2:
-				modo = tModo.DIFICIL;
-			break;
-		}
-		return modo;	
 	}
 
 	/**
@@ -147,8 +126,6 @@ public class Engine {
 			case NARANJA:
 				color = "Naranja";
 			break;
-			default:
-				System.out.println("Color introducido no valido.");
 		}
 		return color;
 	}
@@ -202,91 +179,141 @@ public class Engine {
 			System.out.println();
 		}
 	}
+	
+	/**
+	 * Metodo codigoJuego. Contiene el codigo del juego, adaptable para cualquier modo de juego.
+	 * @param _cons es la constante del numero de colores totales de la secuencia (MAX_COLORES_FACIL y MAX_COLORES_DIFICIL).
+	 */
+	public void codigoJuego(int _cons) {
+		// Declaramos e inicializamos las variables.
+		int index = 0;
+		int numColores = 3;
+		char ch = 'a';
+		boolean fallo = false;
+		boolean color = false;
+		int ayudas = 3;
+		
+		secuenciaColores = new tColores[_cons];
+			numColores = 3;
+			System.out.println("Comenzando partida en modo " + _modo + ".");
+			generarSecuencia(this.NUM_COLORES_ENUM);
+			while (fallo == false && index < numColores) {
+				index = 0;
+				fallo = false;
+				mostrarSecuencia(numColores);
+				color = false;
+				
+				while (color == false) {
+					System.out.println("Introduce el color numero " + (index + 1) + ": ");
+					if (sc.hasNext("[^A-Za-z]")) {
+						System.out.println("Solo puedes introducir letras.");
+						sc.next().charAt(0);
+					} else if (sc.hasNext("x") || sc.hasNext("X")) {
+						ch = sc.next().charAt(0);
+						if (ayudas >= 1) {
+							System.out.print("Tienes " + ayudas + " ayudas. Has utilizado una ayuda.");
+							ayudas = ayudas - 1;
+							System.out.println("El siguiente color es " + mostrarColor(secuenciaColores[index]));
+							System.out.println("Ayudas restanres: " + ayudas);
+						} else {
+							System.out.println("Ya no te quedan mas ayudas.");
+						}
+					} else {
+						ch = sc.next().charAt(0);
+							fallo = comprobarColor(index, charToColor(ch));
+							if (fallo == true) {
+								System.out.println("Has fallado...");
+								color = true;
+							} else {
+								System.out.println("¡Correcto!");
+								index++;
+								if (index == numColores) {
+									System.out.println("Secuencia adivinada.");
+									color = true;
+									numColores++;
+									if (index == _cons) {
+										System.out.println("¡Has ganado!");
+										index++;
+									}
+								}
+							}
+					}								
+				}
+			}	
+			fallo = false;
+			menu();
+	}
 
 	/**
 	 * 	Metodo play. Encargado de controlar la secuencia en la que se encuentra el juego, asi como de leer de teclado
 	 *  los colores que teclee el usuario y sacar por pantalla los correspondientes mensajes.
 	 */
 	public void play(tModo _modo) {
-		// Declaramos e inicializamos las variables.
-		int op = 1;
-		int index = 0;
-		int numColores = 3;
-		char ch = 'a';
-		boolean fallo = false;
-		boolean color = false;
-
-		menu();
-		op = sc.nextInt();
-
 		try {
-			switch (op) {
-				case 0:
+			switch (_modo) {
+				case SALIR:
 					System.out.println("Saliendo del juego. Hasta la proxima...");
 				break;
-				// CASE 1 MODO FACIL
-				case 1:
-					secuenciaColores = new tColores[MAX_COLORES_FACIL];
+				// CASO 1 FACIL
+				case FACIL:
 					do {
-						numColores = 3;
-						System.out.println("Comenzando el juego.");
-						generarSecuencia(this.NUM_COLORES_ENUM);
-						while (fallo == false && index < numColores) {
-							index = 0;
-							fallo = false;
-							mostrarSecuencia(numColores);
-							color = false;
-							while (color == false) {
-								System.out.println("Introduce el color numero " + (index + 1) + ": ");
-								if (sc.hasNext("[^A-Za-z]")) {
-									System.out.println("Solo puedes introducir letras.");
-									sc.next().charAt(0);
-								} else {
-									ch = sc.next().charAt(0);
-									fallo = comprobarColor(index, charToColor(ch));
-									if (fallo == true) {
-										System.out.println("Has fallado...");
-										color = true;
-									} else {
-										System.out.println("¡Correcto!");
-										index++;
-										if (index == numColores) {
-											System.out.println("Secuencia adivinada.");
-											color = true;
-											numColores++;
-											if (index == this.MAX_COLORES_FACIL) {
-												System.out.println("¡Has ganado!");
-												index++;
-											}
-										}
-									}
-								}
-							}
-						}
-						fallo = false;
-						// Llamamos al metodo menu() para poder volver a elegir una opcion
-						menu();
-						op = sc.nextInt();
-					} while (op != 0);
+						codigoJuego(MAX_COLORES_FACIL);
+					} while (_modo != tModo.SALIR);
 				break;
-				// CASE 2 MODO DIFICIL
-				case 2:
-					////////////////////////////////////////////////////////////////
+				// CASO 2 DIFICIL
+				case DIFICIL:
+					do {
+						codigoJuego(MAX_COLORES_DIFICIL);
+					} while (_modo != tModo.SALIR);
 				break;
 				default:
 					System.out.println("Opcion introducida no valida.");
 				}
 			} catch (InputMismatchException e) {
-				System.out.println("Por favor, introduce un numero.");
+				//System.out.println("Por favor, introduce un numero.");
 			}
 		System.out.println("Fin del programa.");
+		System.exit(0);	
+		}
+	
+	/**
+	 * Metodo intToModo. Recibe como parametro un numero entero, correspondiente a la opcion del switch del menu,
+	 * y devuelve un modo de juego.
+	 * @param _numero
+	 * @return
+	 */
+	public tModo intToModo(int _numero) {
+		tModo modo = null;
+		switch(_numero) {
+			case 0:
+				modo = tModo.SALIR;
+			break;
+			case 1:
+				modo = tModo.FACIL;
+			break;
+			case 2:
+				modo = tModo.DIFICIL;
+			break;
+		}
+		return modo;	
 	}
 
 	/**
 	 * Metodo menu. Muestra un menu con las opciones disponibles.
 	 */
 	public void menu() {
-		System.out.println(" 0. Salir\n 1. Jugar en modo facil\n 2. Jugar en modo dificil\n Elige una opcion: ");
+		try {
+			System.out.println(" 0. Salir\n 1. Jugar en modo facil\n 2. Jugar en modo dificil\n Elige una opcion: ");
+			int op = sc.nextInt();
+			play(intToModo(op));
+		} catch (InputMismatchException e) {
+			System.out.println("Opcion introducida no valida. Saliendo del programa...");
+			System.out.println("Fin del programa.");
+		} catch (NullPointerException e) {
+			System.out.println("Opcion introducida no valida. Saliendo del programa...");
+			System.out.println("Fin del programa.");
+		}
+
 	}
 
 	/**
@@ -296,12 +323,12 @@ public class Engine {
 		System.out.println("¡Te doy la bienvenida a Simon Dice! \n¿Cual es tu nombre? ");
 		String nombre = sc.nextLine();
 		// Creacion del objeto j1 de la clase Jugador
-		Jugador j1 = new Jugador(nombre);
-		System.out.println("Hola " + j1.getNombre() + ", pulsa ENTER para comenzar.");
+		Jugador player = new Jugador(nombre);
+		System.out.println("Hola " + player.getNombre() + ", pulsa ENTER para comenzar.");
 		// Condicion if que se asegura de que la partida comience solo al pulsar ENTER
 		if (sc.hasNextLine()) {
 			String s = sc.nextLine();
 		}
-		play();
+		menu();
 	}
 }
