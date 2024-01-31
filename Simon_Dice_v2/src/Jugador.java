@@ -9,7 +9,6 @@ public class Jugador {
 	 */
 	private String nombre;
 	private int puntuacion;
-	private int puntos;
 	
 	/**
 	 * Constructora Jugador.
@@ -22,7 +21,7 @@ public class Jugador {
 	
 	/**
 	 * Metodo getNombre.
-	 * @return
+	 * @return nombre.
 	 */
 	public String getNombre() {
 		return this.nombre;
@@ -30,7 +29,7 @@ public class Jugador {
 	
 	/**
 	 * Metodo getPuntuacion.
-	 * @return
+	 * @return puntuacion.
 	 */
 	public int getPuntuacion() {
 		return this.puntuacion;
@@ -39,15 +38,15 @@ public class Jugador {
 	/**
 	 * Metodo setNombre.
 	 */
-	public void setNombre() {
-		
+	public void setNombre(String _nombre) {
+		this.nombre = _nombre;
 	}
 	
 	/**
 	 * Metodo setPuntuacion.
 	 */
-	public void setPuntuacion(int _puntos) {
-		this.puntos = _puntos;
+	public void setPuntuacion(int _puntuacion) {
+		this.puntuacion = _puntuacion;
 	}
 	
 }
