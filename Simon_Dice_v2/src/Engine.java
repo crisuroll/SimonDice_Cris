@@ -7,7 +7,6 @@ import java.util.Scanner;
  */
 public class Engine {
 
-	// Escaneres
 	Scanner sc = new Scanner(System.in);
 	Scanner sc2 = new Scanner(System.in);
 
@@ -22,15 +21,10 @@ public class Engine {
 		SALIR, FACIL, DIFICIL
 	}
 
-	// Atributos
 	private int MAX_COLORES_SEQ = 0;
 	final private int MAX_COLORES_FACIL = 4;
 	final private int MAX_COLORES_DIFICIL = 7;
 	private tColores[] secuenciaColores;
-	/*
-	private tColores[] numColoresEnum = tColores.values();
-	final private int NUM_COLORES_ENUM = numColoresEnum.length;
-	*/
 
 	/**
 	 * Metodo charToColor. Recibe como parametro un char que representa el color introducido por el usuario 
@@ -139,9 +133,7 @@ public class Engine {
 	 * @param _numColores representa el numero de colores que tiene el tipo enumerado tColores.
 	 */
 	public void generarSecuencia(int _numColores) {
-		// Llenar el array con valores aleatorios del enum
 		for (int i = 0; i < this.secuenciaColores.length; i++) {
-			// Asignar el valor del enum correspondiente al índice aleatorio
 			this.secuenciaColores[i] = intToColor((int) (Math.random() * _numColores + 1));
 		}
 	}
@@ -168,7 +160,6 @@ public class Engine {
 	 */
 	public void mostrarSecuencia(int _numero) {
 		int secAct = _numero - 2;
-		// Imprimir el array resultante
 		System.out.print("Secuencia " + secAct + ": ");
 		for (int i = 0; i < _numero; i++) {
 			System.out.print(mostrarColor(this.secuenciaColores[i]) + " - ");
@@ -177,7 +168,6 @@ public class Engine {
 		if (sc2.hasNextLine()) {
 			String s = sc2.nextLine();
 		}
-		// Bucle for utilizado para "limpiar" la consola
 		for (int i = 0; i < 50; i++) {
 			System.out.println();
 		}
@@ -189,7 +179,6 @@ public class Engine {
 	 *  @param tModo representa el modo de juego.
 	 */
 	public int play(tModo _modo) {
-		// Declaramos e inicializamos las variables.
 		int index = 0;
 		int numColores = 3;
 		char ch = 'a';
@@ -204,7 +193,7 @@ public class Engine {
 			generarSecuencia(this.MAX_COLORES_FACIL);
 			System.out.println("Comenzando partida en modo " + tModo.FACIL + ".");
 		} else { 
-			this.MAX_COLORES_SEQ = 7;
+			this.MAX_COLORES_SEQ = 15;
 			secuenciaColores = new tColores[MAX_COLORES_SEQ];
 			generarSecuencia(this.MAX_COLORES_DIFICIL);
 			System.out.println("Comenzando partida en modo " + tModo.DIFICIL + ".");
@@ -224,8 +213,13 @@ public class Engine {
 					} else if (sc.hasNext("[Xx]")) {
 						ch = sc.next().charAt(0);
 						if (ayudas >= 1) {
-							System.out.print("Tienes " + ayudas + " ayudas. Has utilizado una ayuda.");
+							System.out.println("Tienes " + ayudas + " ayudas. Has utilizado una ayuda.");
 							ayudas = ayudas - 1;
+							if(_modo == tModo.FACIL) {
+								puntos = puntos - 8;
+							} else {
+								puntos = puntos - 16;
+							}
 							System.out.println("El siguiente color es " + mostrarColor(secuenciaColores[index]));
 							System.out.println("Ayudas restantes: " + ayudas);
 						} else {
@@ -236,11 +230,6 @@ public class Engine {
 							fallo = comprobarColor(index, charToColor(ch));
 							if (fallo == true) {
 								System.out.println("Has fallado...");
-								if(_modo == tModo.FACIL) {
-									puntos = puntos - 8;
-								} else {
-									puntos = puntos - 16;
-								}
 								color = true;
 							} else {
 								System.out.println("¡Correcto!");
@@ -318,10 +307,8 @@ public class Engine {
 		tModo _modo;
 		System.out.println("¡Te doy la bienvenida a Simon Dice! \n¿Cual es tu nombre? ");
 		String nombre = sc.nextLine();
-		// Creacion del objeto j1 de la clase Jugador
 		Jugador player = new Jugador(nombre);
 		System.out.println("Hola " + player.getNombre() + ", pulsa ENTER para comenzar.");
-		// Condicion if que se asegura de que la partida comience solo al pulsar ENTER
 		if (sc.hasNextLine()) {
 			String s = sc.nextLine();
 		}
@@ -338,7 +325,7 @@ public class Engine {
 							System.out.println("Puntuacion total: " + player.getPuntuacion());
 						break;
 						case DIFICIL:
-							play(_modo);
+							player.setPuntuacion(play(_modo));
 							System.out.println("Puntuacion total: " + player.getPuntuacion());
 						break;
 						default:
