@@ -24,6 +24,7 @@ public class Engine {
 	private int MAX_COLORES_SEQ = 0;
 	final private int MAX_COLORES_FACIL = 4;
 	final private int MAX_COLORES_DIFICIL = 7;
+	private int ayudas = 3;
 	private tColores[] secuenciaColores;
 
 	/**
@@ -174,17 +175,19 @@ public class Engine {
 	}
 	
 	/**
-	 * Metodo usarAyuda. Metodo que permite utiliza las ayudas disponibles. Si no quedan, debera mostrar un 
+	 * Metodo usarAyuda. Metodo que permite utiliza las ayudas disponibles. Si no quedan, debera mostrar un 
 	 * mensaje informando sobre ello.
 	 * @param _index indice del color i-esimo que desea comprobar.
 	 * @return
 	 */
 	public boolean usarAyuda(int _index) {
-        int ayuda = 3;
-        if (ayuda <= 3) {
-            ayuda--;
+        if (ayudas > 0) {
+			System.out.println("El siguiente color es " + mostrarColor(secuenciaColores[_index]));
+            ayudas--;
+			System.out.println("Ayudas restantes: " + ayudas);
             return true;
         }else {
+			System.out.println("Ya no te quedan mas ayudas.");
             return false;
         }
 	}
@@ -200,7 +203,7 @@ public class Engine {
 		char ch = 'a';
 		boolean fallo = false;
 		boolean color = false;
-		int ayudas = 3;
+		//int ayudas = 3;
 		int puntos = 0;
 		
 		if (_modo == tModo.FACIL) {
@@ -228,19 +231,13 @@ public class Engine {
 						sc.next().charAt(0);
 					} else if (sc.hasNext("[Xx]")) {
 						ch = sc.next().charAt(0);
-						if (usarAyuda(index) == true) {
-							System.out.println("Tienes " + ayudas + " ayudas. Has utilizado una ayuda.");
-							ayudas = ayudas - 1;
+						if (usarAyuda(index)) {
 							if(_modo == tModo.FACIL) {
 								puntos = puntos - 8;
 							} else {
 								puntos = puntos - 16;
 							}
-							System.out.println("El siguiente color es " + mostrarColor(secuenciaColores[index]));
-							System.out.println("Ayudas restantes: " + ayudas);
 							System.out.println("Puntuacion: " + puntos);
-						} else {
-							System.out.println("Ya no te quedan mas ayudas.");
 						}
 					} else {
 						ch = sc.next().charAt(0);
