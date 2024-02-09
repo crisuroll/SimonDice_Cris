@@ -198,6 +198,7 @@ public class Engine {
 	 *  @param tModo representa el modo de juego.
 	 */
 	public int play(tModo _modo) {
+		ayudas = 3;
 		int index = 0;
 		int numColores = 3;
 		char ch = 'a';
