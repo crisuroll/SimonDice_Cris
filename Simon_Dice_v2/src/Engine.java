@@ -174,6 +174,22 @@ public class Engine {
 	}
 	
 	/**
+	 * Metodo usarAyuda. Metodo que permite utiliza las ayudas disponibles. Si no quedan, debera mostrar un 
+	 * mensaje informando sobre ello.
+	 * @param _index indice del color i-esimo que desea comprobar.
+	 * @return
+	 */
+	public boolean usarAyuda(int _index) {
+        int ayuda = 3;
+        if (ayuda <= 3) {
+            ayuda--;
+            return true;
+        }else {
+            return false;
+        }
+	}
+	
+	/**
 	 * 	Metodo play. Encargado de controlar la secuencia en la que se encuentra el juego, asi como de leer de teclado
 	 *  los colores que teclee el usuario y sacar por pantalla los correspondientes mensajes.
 	 *  @param tModo representa el modo de juego.
@@ -212,7 +228,7 @@ public class Engine {
 						sc.next().charAt(0);
 					} else if (sc.hasNext("[Xx]")) {
 						ch = sc.next().charAt(0);
-						if (ayudas >= 1) {
+						if (usarAyuda(index) == true) {
 							System.out.println("Tienes " + ayudas + " ayudas. Has utilizado una ayuda.");
 							ayudas = ayudas - 1;
 							if(_modo == tModo.FACIL) {
@@ -222,6 +238,7 @@ public class Engine {
 							}
 							System.out.println("El siguiente color es " + mostrarColor(secuenciaColores[index]));
 							System.out.println("Ayudas restantes: " + ayudas);
+							System.out.println("Puntuacion: " + puntos);
 						} else {
 							System.out.println("Ya no te quedan mas ayudas.");
 						}
@@ -230,6 +247,7 @@ public class Engine {
 							fallo = comprobarColor(index, charToColor(ch));
 							if (fallo == true) {
 								System.out.println("Has fallado...");
+								System.out.println("Puntuacion: " + puntos);
 								color = true;
 							} else {
 								System.out.println("¡Correcto!");
@@ -239,6 +257,7 @@ public class Engine {
 									puntos = puntos + 4;
 								}
 								index++;
+								System.out.println("Puntuacion: " + puntos);
 								if (index == numColores) {
 									System.out.println("Secuencia adivinada.");
 									if(_modo == tModo.FACIL) {
@@ -248,6 +267,7 @@ public class Engine {
 									}
 									color = true;
 									numColores++;
+									System.out.println("Puntuacion: " + puntos);
 									if (index == MAX_COLORES_SEQ) {
 										System.out.println("¡Has ganado!");
 										if(_modo == tModo.FACIL) {
