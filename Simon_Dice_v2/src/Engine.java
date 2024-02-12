@@ -152,11 +152,7 @@ public class Engine {
 	 * @return res (boolean)
 	 */
 	public boolean comprobarColor(int _index, tColores _color) {
-		boolean res = false;
-		if (_color != this.secuenciaColores[_index]) {
-			res = true;
-		}
-		return res;
+		return _color != this.secuenciaColores[_index];
 	}
 
 	/**
@@ -203,7 +199,7 @@ public class Engine {
 	 *  @param tModo representa el modo de juego.
 	 */
 	public int play(tModo _modo) {
-		ayudas = 3;
+		this.ayudas = 3;
 		int index = 0;
 		int numColores = 3;
 		char ch = 'a';
@@ -213,7 +209,7 @@ public class Engine {
 		int puntos = 0;
 		
 		if (_modo == tModo.FACIL) {
-			this.MAX_COLORES_SEQ = 12;
+			this.MAX_COLORES_SEQ = 5;
 			secuenciaColores = new tColores[MAX_COLORES_SEQ];
 			generarSecuencia(this.MAX_COLORES_FACIL);
 			System.out.println("Comenzando partida en modo " + tModo.FACIL + ".");
@@ -284,7 +280,6 @@ public class Engine {
 			if (puntos <= 0) {
 				puntos = 0;
 			}
-			fallo = false;
 			return puntos;
 	}
 
