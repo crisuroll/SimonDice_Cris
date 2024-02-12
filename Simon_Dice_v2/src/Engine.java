@@ -246,38 +246,38 @@ public class Engine {
 						}
 					} else {
 						ch = sc.next().charAt(0);
-							fallo = comprobarColor(index, charToColor(ch));
-							if (fallo == true) {
-								System.out.println("Has fallado...");
-								color = true;
+						fallo = comprobarColor(index, charToColor(ch));
+						if (fallo == true) {
+							System.out.println("Has fallado...");
+							color = true;
+						} else {
+							System.out.println("¡Correcto!");
+							if(_modo == tModo.FACIL) {
+								puntos = puntos + 2;
 							} else {
-								System.out.println("¡Correcto!");
+								puntos = puntos + 4;
+							}
+							index++;
+							if (index == numColores) {
+								System.out.println("Secuencia adivinada.");
 								if(_modo == tModo.FACIL) {
-									puntos = puntos + 2;
+									puntos = puntos + 5;
 								} else {
-									puntos = puntos + 4;
+									puntos = puntos + 10;	
 								}
-								index++;
-								if (index == numColores) {
-									System.out.println("Secuencia adivinada.");
+								color = true;
+								numColores++;
+								if (index == MAX_COLORES_SEQ) {
+									System.out.println("¡Has ganado!");
 									if(_modo == tModo.FACIL) {
-										puntos = puntos + 5;
+										puntos = puntos + 40;
 									} else {
-										puntos = puntos + 10;	
+										puntos = puntos + 80;
 									}
-									color = true;
-									numColores++;
-									if (index == MAX_COLORES_SEQ) {
-										System.out.println("¡Has ganado!");
-										if(_modo == tModo.FACIL) {
-											puntos = puntos + 40;
-										} else {
-											puntos = puntos + 80;
-										}
-										index++;
-									}
+									index++;
 								}
 							}
+						}
 					}								
 				}
 			}	
