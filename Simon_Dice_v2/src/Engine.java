@@ -7,6 +7,7 @@ import java.util.Scanner;
  */
 public class Engine {
 
+	// Escáneres. Pendiente de ver como utilizar solo uno sin que falle los saltos con Enter.
 	Scanner sc = new Scanner(System.in);
 	Scanner sc2 = new Scanner(System.in);
 
@@ -17,13 +18,17 @@ public class Engine {
 		ROJO, VERDE, AZUL, DORADO, BLANCO, MARRON, NARANJA
 	}
 	
+	/**
+	 * Tipo enum tModo. Guarda los modos de juego disponibles.
+	 */
 	public enum tModo {
 		SALIR, FACIL, DIFICIL
 	}
-
-	private int MAX_COLORES_SEQ = 0;
+	
+	// Atributos. Dos constantes y tres variables.
 	final private int MAX_COLORES_FACIL = 4;
 	final private int MAX_COLORES_DIFICIL = 7;
+	private int MAX_COLORES_SEQ = 0;
 	private int ayudas = 3;
 	private tColores[] secuenciaColores;
 
@@ -238,14 +243,12 @@ public class Engine {
 							} else {
 								puntos = puntos - 16;
 							}
-							System.out.println("Puntuacion: " + puntos);
 						}
 					} else {
 						ch = sc.next().charAt(0);
 							fallo = comprobarColor(index, charToColor(ch));
 							if (fallo == true) {
 								System.out.println("Has fallado...");
-								System.out.println("Puntuacion: " + puntos);
 								color = true;
 							} else {
 								System.out.println("¡Correcto!");
@@ -255,7 +258,6 @@ public class Engine {
 									puntos = puntos + 4;
 								}
 								index++;
-								System.out.println("Puntuacion: " + puntos);
 								if (index == numColores) {
 									System.out.println("Secuencia adivinada.");
 									if(_modo == tModo.FACIL) {
@@ -265,7 +267,6 @@ public class Engine {
 									}
 									color = true;
 									numColores++;
-									System.out.println("Puntuacion: " + puntos);
 									if (index == MAX_COLORES_SEQ) {
 										System.out.println("¡Has ganado!");
 										if(_modo == tModo.FACIL) {
