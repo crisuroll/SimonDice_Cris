@@ -1,0 +1,13 @@
+SIMON DICE VERSION 3
+	Implementar un algoritmo de ordenacion. Vamos a tener un array de jugadores con su puntuacion, y hay que ordenarlos de mayor a menor
+	
+	Array de jugadores que tiene como tamaño máximo MAX_JUGADORES ---------HECHO---------
+
+	La constructora inicializa el contador a 0, el array a MAX_JUGADORES, etc  ---------HECHO---------
+	
+	Metodo addPlayer() - metodo que dado el nombre de un jugador retorne el jugador. Recibe un String y retorna un objeto Jugador ¿¿¿¿????
+Metodo ordenarRanking - coge el array de jugadores y lo ordena de mayor a menor puntuacion
+tb se puede  hacer showRanking() que esta en el pdf. metodo showBestPlayer() lo mismo 
+Hay que mostrar todos los jugadores con la puntuacion mas alta (ej. 5 jugadores con puntuacion 100)
+
+	Variable contador te dice el numero de jugadores que tiene el array. No los muestra como tal, eso lo hacen los ficheros
