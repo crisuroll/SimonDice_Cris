@@ -209,7 +209,7 @@ public class Engine {
 		int puntos = 0;
 		
 		if (_modo == tModo.FACIL) {
-			this.MAX_COLORES_SEQ = 5;
+			this.MAX_COLORES_SEQ = 12;
 			secuenciaColores = new tColores[MAX_COLORES_SEQ];
 			generarSecuencia(this.MAX_COLORES_FACIL);
 			System.out.println("Comenzando partida en modo " + tModo.FACIL + ".");
