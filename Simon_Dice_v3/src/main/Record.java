@@ -3,6 +3,7 @@ package main;
 public class Record {
 	final private int MAX_JUGADORES;
 	private int cont;
+	private Jugador[] arrJugadores;
 	
 	public Record() {
 		this.MAX_JUGADORES = 20;
@@ -10,11 +11,31 @@ public class Record {
 	}
 	
 	/**
-	 * Metodo addPlayer. Recibe un String y retorna un objeto Jugador ¿¿¿¿????
+	 * Metodo addPlayer. Añade un jugador al array de jugadores.
 	 */
-	public Jugador addPlayer(String _nombre) {
+	public void addPlayer(String _nombre) {
 		
-		return null;
+	}
+	
+	/**
+	 * Metodo getPlayer. Recibe un String y retorna un objeto Jugador
+	 */
+	public Jugador getPlayer(String _nombre) {
+		boolean encontrado = false;
+		int i = 0;
+		Jugador j = null;
+		while (encontrado == false && i < this.arrJugadores.length) {
+			if (this.arrJugadores[i].getNombre().equals(_nombre)) { 
+				j = this.arrJugadores[i];
+				System.out.println("Se ha encontrado el jugador '" + j.getNombre() + "'." );
+				encontrado = true;
+			}
+			i++;
+		}
+		if(encontrado == false) {
+			System.out.println("No se ha encontrado el jugador '" + _nombre + "'.");
+		}
+		return j;
 	}
 	
 	/**
