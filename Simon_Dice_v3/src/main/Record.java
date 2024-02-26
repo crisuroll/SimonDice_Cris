@@ -8,13 +8,19 @@ public class Record {
 	public Record() {
 		this.MAX_JUGADORES = 20;
 		this.cont = 0;
+		this.arrJugadores = new Jugador[MAX_JUGADORES];
 	}
 	
 	/**
 	 * Metodo addPlayer. Añade un jugador al array de jugadores.
 	 */
-	public void addPlayer(String _nombre) {
-		
+	public void addPlayer(Jugador _player) {
+		if (this.cont <= this.MAX_JUGADORES) {
+			this.arrJugadores[this.cont] = _player;
+			this.cont++;
+		} else {
+			System.out.println("No es posible añadir más jugadores.");
+		}
 	}
 	
 	/**
@@ -42,24 +48,34 @@ public class Record {
 	 * Metodo sortRanking. Coge el array de jugadores y lo ordena de mayor a menor puntuacion.
 	 */
 	public void sortRanking() {
-		
-		
-	}
-	
-	/**
-	 * Metodo showRanking. Muestra el ranking de los 10 mejores jugadores.
-	 */
-	public void showRanking() {
-		
-		
+	    Jugador acu;
+	    for (int i = 0; i < this.arrJugadores.length - 1; i++) {
+	        for (int j = 0; j < arrJugadores.length - i - 1; j++) {
+	            if (this.arrJugadores[j].getPuntuacion() < this.arrJugadores[j + 1].getPuntuacion()) {
+	                acu = this.arrJugadores[j + 1];
+	                this.arrJugadores[j + 1] = this.arrJugadores[j];
+	                this.arrJugadores[j] = acu;
+	            }
+	        }
+	    }
 	}
 	
 	/**
 	 * Metodo showBestPlayer. Muestra el jugador (o jugadores) con la puntuación más alta.
 	 */
 	public void showBestPlayer() {
-		
-		
+		sortRanking();
+		System.out.println(this.arrJugadores[0]);
+	}
+	
+	/**
+	 * Metodo showRanking. Muestra el ranking de los 10 mejores jugadores.
+	 */
+	public void showRanking() {
+		sortRanking();
+		for (int h = 0; h < this.arrJugadores.length; h++) {
+			System.out.print(this.arrJugadores[h] + " ");
+		}
 	}
 	
 	/**

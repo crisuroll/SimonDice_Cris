@@ -335,10 +335,21 @@ public class Engine {
 	 * Metodo start. Encargado de comenzar el juego y dar la bienvenida al jugador.
 	 */
 	public void start() {
+		Record rec = new Record();
+		Jugador p1 = new Jugador("Oscar");
+		p1.setPuntuacion(132);
+		rec.addPlayer(p1);
+		Jugador p2 = new Jugador("David");
+		p2.setPuntuacion(152);
+		rec.addPlayer(p2);
+		Jugador p3 = new Jugador("Cris");
+		p3.setPuntuacion(112);
+		rec.addPlayer(p3);
 		tModo _modo;
 		System.out.println("¡Te doy la bienvenida a Simon Dice! \n¿Cual es tu nombre? ");
 		String nombre = sc.nextLine();
 		Jugador player = new Jugador(nombre);
+		rec.addPlayer(player);
 		System.out.println("Hola " + player.getNombre() + ", pulsa ENTER para comenzar.");
 		if (sc.hasNextLine()) {
 			String s = sc.nextLine();
@@ -360,10 +371,12 @@ public class Engine {
 							System.out.println("Puntuacion total: " + player.getPuntuacion());
 						break;
 						case TOP10:
-							
+							System.out.println("Mostrando el TOP 10:");
+							rec.showRanking();
 						break;
 						case TOP1:
-							
+							System.out.println("Mostrando el TOP 1:");
+							rec.showBestPlayer();
 						break;
 						default:
 							System.out.println("Opcion introducida no valida.");
