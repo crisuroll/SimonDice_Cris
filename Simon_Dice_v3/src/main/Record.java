@@ -49,8 +49,8 @@ public class Record {
 	 */
 	public void sortRanking() {
 	    Jugador acu;
-	    for (int i = 0; i < this.arrJugadores.length - 1; i++) {
-	        for (int j = 0; j < arrJugadores.length - i - 1; j++) {
+	    for (int i = 0; i < this.cont; i++) {
+	        for (int j = 0; j < cont - i - 1; j++) {
 	            if (this.arrJugadores[j].getPuntuacion() < this.arrJugadores[j + 1].getPuntuacion()) {
 	                acu = this.arrJugadores[j + 1];
 	                this.arrJugadores[j + 1] = this.arrJugadores[j];
@@ -65,16 +65,22 @@ public class Record {
 	 */
 	public void showBestPlayer() {
 		sortRanking();
-		System.out.println(this.arrJugadores[0]);
+		int i = 0;
+	    while (i < this.cont && this.arrJugadores[i].getPuntuacion() == this.arrJugadores[0].getPuntuacion()) {
+	        System.out.println(arrJugadores[i].getNombre() + " " + arrJugadores[i].getPuntuacion());
+	        i++;
+	    }
 	}
 	
 	/**
 	 * Metodo showRanking. Muestra el ranking de los 10 mejores jugadores.
 	 */
 	public void showRanking() {
+		int i = 0;
 		sortRanking();
-		for (int h = 0; h < this.arrJugadores.length; h++) {
-			System.out.print(this.arrJugadores[h] + " ");
+		while (i < this.cont && i < 10) {
+			System.out.print(arrJugadores[i].getNombre() + " " + arrJugadores[i].getPuntuacion() + "\n");
+			i++;
 		}
 	}
 	

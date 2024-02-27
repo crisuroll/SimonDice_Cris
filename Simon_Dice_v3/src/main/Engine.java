@@ -337,13 +337,13 @@ public class Engine {
 	public void start() {
 		Record rec = new Record();
 		Jugador p1 = new Jugador("Oscar");
-		p1.setPuntuacion(132);
+		p1.setPuntuacion(152);
 		rec.addPlayer(p1);
 		Jugador p2 = new Jugador("David");
 		p2.setPuntuacion(152);
 		rec.addPlayer(p2);
 		Jugador p3 = new Jugador("Cris");
-		p3.setPuntuacion(112);
+		p3.setPuntuacion(45);
 		rec.addPlayer(p3);
 		tModo _modo;
 		System.out.println("¡Te doy la bienvenida a Simon Dice! \n¿Cual es tu nombre? ");
@@ -373,10 +373,12 @@ public class Engine {
 						case TOP10:
 							System.out.println("Mostrando el TOP 10:");
 							rec.showRanking();
+							System.out.println();
 						break;
 						case TOP1:
 							System.out.println("Mostrando el TOP 1:");
 							rec.showBestPlayer();
+							System.out.println();
 						break;
 						default:
 							System.out.println("Opcion introducida no valida.");
@@ -390,7 +392,7 @@ public class Engine {
 			System.out.println("Opcion introducida no valida. Saliendo del programa...");
 			System.out.println("Fin del programa.");
 		} catch (NullPointerException e) {
-			System.out.println("Opcion introducida no valida. Saliendo del programa...");
+			System.out.println("Nulo. Saliendo del programa...");
 			System.out.println("Fin del programa.");
 		}
 	}
