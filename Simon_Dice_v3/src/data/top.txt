@@ -1,0 +1,12 @@
+152 Oscar
+152 David
+45 Cris
+0 cris
+152 Oscar
+152 David
+45 Cris
+0 cris
+152 Oscar
+152 David
+45 Cris
+15 cris

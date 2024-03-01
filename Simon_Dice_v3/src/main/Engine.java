@@ -1,4 +1,5 @@
 package main;
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -318,6 +319,8 @@ public class Engine {
 			case 4:
 				modo = tModo.TOP1;
 			break;
+			default:
+				System.out.println("No existe esta opcion.");
 		}
 		return modo;	
 	}
@@ -333,9 +336,11 @@ public class Engine {
 
 	/**
 	 * Metodo start. Encargado de comenzar el juego y dar la bienvenida al jugador.
+	 * @throws IOException 
 	 */
-	public void start() {
+	public void start() throws IOException {
 		Record rec = new Record();
+		int sel;
 		Jugador p1 = new Jugador("Oscar");
 		p1.setPuntuacion(152);
 		rec.addPlayer(p1);
@@ -363,16 +368,27 @@ public class Engine {
 							System.out.println("Saliendo del juego. Hasta la proxima...");
 						break;
 						case FACIL:
-							player.setPuntuacion(play(_modo));
-							System.out.println("Puntuacion total: " + player.getPuntuacion());
+							sel = 1;
+							while (sel == 1) {
+								player.setPuntuacion(play(_modo));
+								System.out.println("Puntuacion total: " + player.getPuntuacion());
+								System.out.println("¿Quieres jugar otra vez? || 1. Sí | 2. No ||");
+								sel = sc.nextInt();
+							}
 						break;
 						case DIFICIL:
-							player.setPuntuacion(play(_modo));
-							System.out.println("Puntuacion total: " + player.getPuntuacion());
+							sel = 1;
+							while (sel == 1) {
+								player.setPuntuacion(play(_modo));
+								System.out.println("Puntuacion total: " + player.getPuntuacion());
+								System.out.println("¿Quieres jugar otra vez? || 1. Sí | 2. No ||");
+								sel = sc.nextInt();
+							}
 						break;
 						case TOP10:
 							System.out.println("Mostrando el TOP 10:");
 							rec.showRanking();
+							rec.escribirRanking();
 							System.out.println();
 						break;
 						case TOP1:
@@ -385,15 +401,13 @@ public class Engine {
 						}
 				} while (_modo != tModo.SALIR);
 			} catch (InputMismatchException e) {
-					System.out.println("Por favor, introduce un numero.");
+					System.out.println("Por favor, introduce un numero.\nFin del programa.");
 			}
-			System.out.println("Fin del programa.");
 		} catch (InputMismatchException e) {
-			System.out.println("Opcion introducida no valida. Saliendo del programa...");
+			System.out.println("Opcion introducida no valida. Saliendo del programa...\nFin del programa.");
 			System.out.println("Fin del programa.");
 		} catch (NullPointerException e) {
-			System.out.println("Nulo. Saliendo del programa...");
-			System.out.println("Fin del programa.");
+			System.out.println("Nulo. Saliendo del programa...\nFin del programa.");
 		}
 	}
 }

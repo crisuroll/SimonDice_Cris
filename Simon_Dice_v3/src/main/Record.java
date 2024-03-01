@@ -1,5 +1,8 @@
 package main;
 
+import java.io.FileWriter;
+import java.io.IOException; 
+
 public class Record {
 	final private int MAX_JUGADORES;
 	private int cont;
@@ -67,19 +70,20 @@ public class Record {
 		sortRanking();
 		int i = 0;
 	    while (i < this.cont && this.arrJugadores[i].getPuntuacion() == this.arrJugadores[0].getPuntuacion()) {
-	        System.out.println(arrJugadores[i].getNombre() + " " + arrJugadores[i].getPuntuacion());
+			System.out.print(arrJugadores[i].getPuntuacion() + " " + arrJugadores[i].getNombre() + "\n");
 	        i++;
 	    }
 	}
 	
 	/**
 	 * Metodo showRanking. Muestra el ranking de los 10 mejores jugadores.
+	 * @throws IOException 
 	 */
-	public void showRanking() {
+	public void showRanking() throws IOException {
 		int i = 0;
 		sortRanking();
 		while (i < this.cont && i < 10) {
-			System.out.print(arrJugadores[i].getNombre() + " " + arrJugadores[i].getPuntuacion() + "\n");
+			System.out.print(arrJugadores[i].getPuntuacion() + " " + arrJugadores[i].getNombre() + "\n");
 			i++;
 		}
 	}
@@ -102,8 +106,15 @@ public class Record {
 	 * CustomWriteFile para que así pueda escribir la información en el fichero. El profesor proporcionará parte 
 	 * del código de las clases CustomReadFile, CustomWriteFile, ICustomReadFile, ICustomWriteFile y Pair.
 	 */
-	public void escribirRanking() {
+	public void escribirRanking() throws IOException {
+		FileWriter top =  new FileWriter("./src/data/top.txt", true);
 		
+	     for (int i = 0; i < cont; i++) 
+	         top.write(arrJugadores[i].getPuntuacion() + " " + arrJugadores[i].getNombre() + "\n"); 
+	
+	     System.out.println("Writing successful"); 
+	     //close the file  
+	     top.close(); 
 		
 	}
 }
