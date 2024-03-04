@@ -47,6 +47,7 @@ public class Engine {
 	 * (primera letra) y devuelve su enumerado correspondiente.
 	 * @param _color representa el caracter del color introducido por el usuario.
 	 * @return color (tColores)
+	 * Complejidad O(1).
 	 */
 	public tColores charToColor(Character _color) {
 		tColores color = null;
@@ -80,6 +81,7 @@ public class Engine {
 	 * Metodo intToColor. Recibe como parametro un numero entero y devuelve un color.
 	 * @param _numero representa el numero entero
 	 * @return color (tColores)
+	 * Complejidad O(1).
 	 */
 	public tColores intToColor(int _numero) {
 		tColores color = null;
@@ -114,6 +116,7 @@ public class Engine {
 	 * color de forma mas amigable para el jugador.
 	 * @param _color representa el color de tipo tColores que queremos mostrar como String
 	 * @return color (String)
+	 * Complejidad O(1).
 	 */
 	public String mostrarColor(tColores _color) {
 		String color = "";
@@ -147,6 +150,7 @@ public class Engine {
 	 * Metodo generarSecuencia. Genera una secuencia de colores de forma aleatoria dentro del intervalo 
 	 * [0, _numColores], la cual se almacenara en el array secuenciaColores.
 	 * @param _numColores representa el numero de colores que tiene el tipo enumerado tColores.
+	 * Complejidad O(n).
 	 */
 	public void generarSecuencia(int _numColores) {
 		for (int i = 0; i < this.secuenciaColores.length; i++) {
@@ -160,6 +164,7 @@ public class Engine {
 	 * @param _index es el indice que el color ocupa dentro del array secuenciaColores.
 	 * @param _color es el color introducido por el usuario.
 	 * @return res (boolean)
+	 * Complejidad O(1).
 	 */
 	public boolean comprobarColor(int _index, tColores _color) {
 		return _color != this.secuenciaColores[_index];
@@ -169,6 +174,7 @@ public class Engine {
 	 * Metodo mostrarSecuencia. Muestra la secuencia actual por pantalla para que el usuario la pueda memorizar. 
 	 * Al pulsar una tecla, la secuencia debe borrarse para permitir que el usuario introduzca los colores.
 	 * @param _numero es el numero de la secuencia actual.
+	 * Complejidad O(n).
 	 */
 	public void mostrarSecuencia(int _numero) {
 		int secAct = _numero - 2;
@@ -190,6 +196,7 @@ public class Engine {
 	 * mensaje informando sobre ello.
 	 * @param _index indice del color i-esimo que desea comprobar.
 	 * @return
+	 * Complejidad O(1).
 	 */
 	public boolean usarAyuda(int _index) {
         if (this.ayudas > 0) {
@@ -207,6 +214,7 @@ public class Engine {
 	 * 	Metodo play. Encargado de controlar la secuencia en la que se encuentra el juego, asi como de leer de teclado
 	 *  los colores que teclee el usuario y sacar por pantalla los correspondientes mensajes.
 	 *  @param tModo representa el modo de juego.
+	 *  Complejidad O(n²).
 	 */
 	public int play(tModo _modo) {
 		this.ayudas = 3;
@@ -292,14 +300,13 @@ public class Engine {
 			}
 			return puntos;
 	}
-	
-
 
 	/**
 	 * Metodo intToModo. Recibe como parametro un numero entero, correspondiente a la opcion del switch del menu,
 	 * y devuelve un modo de juego.
 	 * @param _numero
 	 * @return
+	 * Complejidad O(1).
 	 */
 	public tModo intToModo(int _numero) {
 		tModo modo = null;
@@ -327,6 +334,7 @@ public class Engine {
 
 	/**
 	 * Metodo menu. Muestra un menu con las opciones disponibles.
+	 * Complejidad O(1).
 	 */
 	public int menu() {
 		System.out.println(" 0. Salir\n 1. Jugar en modo facil\n 2. Jugar en modo dificil\n 3. Ver 10 mejores jugadores\n 4. Ver jugador(es) con la puntuacion mas alta\n Elige una opcion: ");
@@ -337,6 +345,7 @@ public class Engine {
 	/**
 	 * Metodo start. Encargado de comenzar el juego y dar la bienvenida al jugador.
 	 * @throws IOException 
+	 * Complejidad O(n²).
 	 */
 	public void start() throws IOException {
 		Record rec = new Record();
@@ -388,7 +397,6 @@ public class Engine {
 						case TOP10:
 							System.out.println("Mostrando el TOP 10:");
 							rec.showRanking();
-							rec.escribirRanking();
 							System.out.println();
 						break;
 						case TOP1:

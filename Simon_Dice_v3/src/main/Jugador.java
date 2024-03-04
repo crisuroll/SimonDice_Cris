@@ -14,6 +14,7 @@ public class Jugador {
 	/**
 	 * Constructora Jugador. Recibe el nombre del jugador e inicializa por defecto la puntuacion a 0.
 	 * @param _nombre recibe un String con el nombre del jugador.
+	 * Complejidad O(1).
 	 */
 	public Jugador(String _nombre) {
 		this.nombre = _nombre;
@@ -23,6 +24,7 @@ public class Jugador {
 	/**
 	 * Metodo getNombre. Devuelve el nombre del jugador.
 	 * @return nombre.
+	 * Complejidad O(1).
 	 */
 	public String getNombre() {
 		return this.nombre;
@@ -31,6 +33,7 @@ public class Jugador {
 	/**
 	 * Metodo getPuntuacion. Devuelve la puntuacion del jugador.
 	 * @return puntuacion.
+	 * Complejidad O(1).
 	 */
 	public int getPuntuacion() {
 		return this.puntuacion;
@@ -38,6 +41,7 @@ public class Jugador {
 	
 	/**
 	 * Metodo setNombre. Recibe el nombre del jugador y lo inicializa.
+	 * Complejidad O(1).
 	 */
 	public void setNombre(String _nombre) {
 		this.nombre = _nombre;
@@ -45,6 +49,7 @@ public class Jugador {
 	
 	/**
 	 * Metodo setPuntuacion. Recibe la puntuacion del jugador y la inicializa.
+	 * Complejidad O().
 	 */
 	public void setPuntuacion(int _puntuacion) {
 		this.puntuacion = _puntuacion;
