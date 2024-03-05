@@ -19,7 +19,7 @@ public class Record {
 	 * Complejidad O(1).
 	 */
 	public void addPlayer(Jugador _player) {
-		if (this.cont < this.MAX_JUGADORES) {
+		if (this.cont < this.MAX_JUGADORES) { //si es igual se sale del array porque va de 0 a 19
 			this.arrJugadores[this.cont] = _player;
 			this.cont++;
 		} else {
