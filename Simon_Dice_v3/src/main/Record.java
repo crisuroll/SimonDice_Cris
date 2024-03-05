@@ -18,8 +18,8 @@ public class Record {
 	 * Metodo addPlayer. Añade un jugador al array de jugadores.
 	 * Complejidad O(1).
 	 */
-	public void addPlayer(Jugador _player) {
-		if (this.cont < this.MAX_JUGADORES) { //si es igual se sale del array porque va de 0 a 19
+	public void addPlayer(Jugador _player) { // ESTO SE ELIMINA
+		if (this.cont < this.MAX_JUGADORES) {
 			this.arrJugadores[this.cont] = _player;
 			this.cont++;
 		} else {
@@ -95,13 +95,19 @@ public class Record {
 	
 	/**
 	 * Metodo cargarRanking. Este método crea un objeto de tipo CustomReadFile y llama al método que se encarga 
-	 * de leer de fichero, que como no podía ser de otra forma se encuentra en la propia clase CustomReadFile 
-	 * (de ahí que debamos instanciar un objeto de esa clase).
+	 * de leer de fichero, readPlayers(), que como no podía ser de otra forma se encuentra en la propia clase 
+	 * CustomReadFile (de ahí que debamos instanciar un objeto de esa clase).
 	 * Complejidad O().
 	 */
+	/*
+	 * Pasar por la constructora el nombre del fichero a leer.
+	 */
 	public void cargarRanking() {
-		
-		
+		// Vector<> miVector = fichero.readPlayers();
+		/*
+		 * Recorrer el vector y, por redundante que suene, coger los jugadores del vector y meterlos en el array.
+		 * Rellenar hasta que se acabe el vector o || hasta MAX_JUGADORES.
+		 */
 	}
 	
 	/**
@@ -114,16 +120,16 @@ public class Record {
 	 * Complejidad O().
 	 */
 	/*
+	 * Va a ir al primer jugador, coger su puntuación y nombre, y añadirlo al String. Concatena los siguientes
+	 * jugadores. Como resultado hay un String enorme. Le decimos a la clase CustomWriteFile que lo escriba
+	 * en el fichero, que es el parámetro _chain.
+	 */
+	
 	public void escribirRanking() throws IOException {
 		FileWriter top =  new FileWriter("./src/data/top.txt", true);
-		
-	     for (int i = 0; i < cont; i++) 
-	         top.write(arrJugadores[i].getPuntuacion() + " " + arrJugadores[i].getNombre() + "\n"); 
-	
-	     System.out.println("Writing successful"); 
-	     //close the file  
-	     top.close(); 
-		
+		String str = "";
+		for (int i = 0; i < cont; i++) {
+			str = str + (this.arrJugadores[i].getPuntuacion() + " " + this.arrJugadores[i].getNombre() + "\n");  
+		}
 	}
-	*/
 }
