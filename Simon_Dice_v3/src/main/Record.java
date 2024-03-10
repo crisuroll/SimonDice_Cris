@@ -1,7 +1,15 @@
 package main;
 
 import java.io.FileWriter;
-import java.io.IOException; 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Vector;
+
+import files.CustomReadFile;
+import files.CustomWriteFile; 
 
 public class Record {
 	final private int MAX_JUGADORES;
@@ -94,16 +102,24 @@ public class Record {
 	}
 	
 	/**
-	 * Metodo cargarRanking. Este método crea un objeto de tipo CustomReadFile y llama al método que se encarga 
-	 * de leer de fichero, readPlayers(), que como no podía ser de otra forma se encuentra en la propia clase 
-	 * CustomReadFile (de ahí que debamos instanciar un objeto de esa clase).
-	 * Complejidad O().
+	 * Metodo cargarRanking. Lee los jugadores del fichero con readPlayers() y los guarda en el array de jugadores arrJugadores.
+	 * Complejidad O(n).
+	 * @throws FileNotFoundException 
 	 */
 	/*
 	 * Pasar por la constructora el nombre del fichero a leer.
 	 */
-	public void cargarRanking() {
-		// Vector<> miVector = fichero.readPlayers();
+	public void cargarRanking() throws FileNotFoundException {
+		CustomReadFile crf = new CustomReadFile("./src/data/top.txt");
+		ArrayList<Jugador> miAL = crf.readPlayers();
+		Scanner sc = new Scanner(crf);
+		int i = 0;
+		while (sc.hasNextLine() || i < this.MAX_JUGADORES) {
+			String linea = sc.nextLine();
+	        Jugador j = new Jugador(linea);
+	        this.arrJugadores[i] = j;
+	        i++;
+		}
 		/*
 		 * Recorrer el vector y, por redundante que suene, coger los jugadores del vector y meterlos en el array.
 		 * Rellenar hasta que se acabe el vector o || hasta MAX_JUGADORES.
@@ -117,7 +133,7 @@ public class Record {
 	 * respetando las dos columnas. Esta cadena será pasada por parámetro al método correspondiente en la clase 
 	 * CustomWriteFile para que así pueda escribir la información en el fichero. El profesor proporcionará parte 
 	 * del código de las clases CustomReadFile, CustomWriteFile, ICustomReadFile, ICustomWriteFile y Pair.
-	 * Complejidad O().
+	 * Complejidad O(n).
 	 */
 	/*
 	 * Va a ir al primer jugador, coger su puntuación y nombre, y añadirlo al String. Concatena los siguientes
@@ -126,10 +142,11 @@ public class Record {
 	 */
 	
 	public void escribirRanking() throws IOException {
-		FileWriter top =  new FileWriter("./src/data/top.txt", true);
+		CustomWriteFile cwf =  new CustomWriteFile("./src/data/top.txt");
 		String str = "";
 		for (int i = 0; i < cont; i++) {
 			str = str + (this.arrJugadores[i].getPuntuacion() + " " + this.arrJugadores[i].getNombre() + "\n");  
 		}
+		cwf.write(str);
 	}
 }
