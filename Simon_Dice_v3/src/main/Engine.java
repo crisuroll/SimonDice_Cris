@@ -27,14 +27,18 @@ public class Engine {
 		SALIR, FACIL, DIFICIL, TOP10, TOP1
 	}
 	
-	// Atributos
+	/**
+	 * Atributos.
+	 */
 	final private int MAX_COLORES_FACIL;
 	final private int MAX_COLORES_DIFICIL;
 	private int MAX_COLORES_SEQ; // No es constante para poder darle valor de 12 o 15 segun la dificultad elegida
 	private int ayudas;
 	private tColores[] secuenciaColores;
 	
-	// Constructora
+	/**
+	 * Constructora.
+	 */
 	public Engine() {
 		this.MAX_COLORES_FACIL = 4;
 		this.MAX_COLORES_DIFICIL = 7;
@@ -350,21 +354,14 @@ public class Engine {
 	public void start() throws IOException {
 		Record rec = new Record();
 		int sel;
-		Jugador p1 = new Jugador("Oscar");
-		p1.setPuntuacion(152);
-		rec.addPlayer(p1);
-		Jugador p2 = new Jugador("David");
-		p2.setPuntuacion(152);
-		rec.addPlayer(p2);
-		Jugador p3 = new Jugador("Cris");
-		p3.setPuntuacion(45);
-		rec.addPlayer(p3);
 		tModo _modo;
 		System.out.println("¡Te doy la bienvenida a Simon Dice! \n¿Cual es tu nombre? ");
 		String nombre = sc.nextLine();
 		Jugador player = new Jugador(nombre);
 		rec.addPlayer(player);
+		rec.cargarRanking();
 		System.out.println("Hola " + player.getNombre() + ", pulsa ENTER para comenzar.");
+		rec.escribirRanking();
 		if (sc.hasNextLine()) {
 			String s = sc.nextLine();
 		}
@@ -383,6 +380,7 @@ public class Engine {
 								System.out.println("Puntuacion total: " + player.getPuntuacion());
 								System.out.println("¿Quieres jugar otra vez? || 1. Sí | 2. No ||");
 								sel = sc.nextInt();
+								rec.escribirRanking();
 							}
 						break;
 						case DIFICIL:
@@ -392,6 +390,7 @@ public class Engine {
 								System.out.println("Puntuacion total: " + player.getPuntuacion());
 								System.out.println("¿Quieres jugar otra vez? || 1. Sí | 2. No ||");
 								sel = sc.nextInt();
+								rec.escribirRanking();
 							}
 						break;
 						case TOP10:

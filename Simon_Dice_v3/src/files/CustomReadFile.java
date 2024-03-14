@@ -8,32 +8,58 @@ import java.util.Scanner;
 
 import main.Jugador;
 
+/**
+ * Clase CustomReadFile. Se encarga de la lectura de los jugadores del fichero.
+ * @author crisuroll
+ */
 public class CustomReadFile extends FileReader implements ICustomReadFile {
-	private final ArrayList<Jugador> miAL = new ArrayList<Jugador>();
-	private CustomReadFile crf = new CustomReadFile("./src/data/top.txt");
-	/* DOS MÉTODOS DE ICustomReadFile IMPLEMENTADOS
-	 * - void closeReadFile(): Cierra el fichero. Controlar excepción. "Excepcion capturada en X metodo de X clase".
-	 * - Vector/ArrayList...<Jugador> readPlayers(). Leer primer jugador de top.txt, añadirlo al vector. Asi con
-	 *   todos. Retornar el vector.
-	 * USAN UNA CONSTRUCTORA SUPER
+	/**
+	 * Atributos.
 	 */
+	private final ArrayList<Jugador> miAL = new ArrayList<Jugador>();
+	private Scanner sc;
 	
+	/**
+	 * Constructora CustomReadFile.
+	 * @param _fileName recibe el nombre del fichero a leer.
+	 * @throws FileNotFoundException
+	 */
 	public CustomReadFile(String _fileName) throws FileNotFoundException {
 		super(_fileName);
+		this.sc = new Scanner(this);
 	}
 
+	/**
+	 * Metodo closeReadFile(). Cierra el fichero utilizado.
+	 * Complejidad O(1).
+	 */
 	public void closeReadFile() throws IOException {
-		this.crf.close();
+		this.close();
 	}
 	
+	/**
+	 * Metodo readPlayers(). Lee el fichero y guarda los jugadores en un ArrayList.
+	 * Complejidad O(n).
+	 */
 	public ArrayList<Jugador> readPlayers() throws FileNotFoundException {
-		Scanner sc = new Scanner(crf);
-		int i = 0;
-		while(sc.hasNextLine()) {
-			Jugador j = new Jugador(sc.nextLine());
-			miAL.add(j);
-		}
-		return miAL;
+		while(this.sc.hasNextLine()) {
+			/* ESTA ES OTRA MANERA DE HACERLO QUE SE ME HA OCURRIDO.
+	        String linea = this.sc.nextLine();
+			String[] datos = linea.split(" ");
+			int punt = Integer.parseInt(datos[0].trim());
+			String nom = datos[1].trim();
+			Jugador j = new Jugador(nom);
+			j.setPuntuacion(punt);
+			this.miAL.add(j);
+			*/
+			int punt = sc.nextInt();
+			String nom = sc.next();
+			Jugador j = new Jugador(nom);
+			j.setPuntuacion(punt);
+			this.miAL.add(j);
+			this.sc.nextLine(); // Saltamos a la siguiente linea del fichero. Si no, da error.
+		}        
+		return this.miAL;
 	}
 
 }

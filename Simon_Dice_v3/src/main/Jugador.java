@@ -12,9 +12,8 @@ public class Jugador {
 	private int puntuacion;
 	
 	/**
-	 * Constructora Jugador. Recibe el nombre del jugador e inicializa por defecto la puntuacion a 0.
+	 * Constructora Jugador.
 	 * @param _nombre recibe un String con el nombre del jugador.
-	 * Complejidad O(1).
 	 */
 	public Jugador(String _nombre) {
 		this.nombre = _nombre;
@@ -49,7 +48,7 @@ public class Jugador {
 	
 	/**
 	 * Metodo setPuntuacion. Recibe la puntuacion del jugador y la inicializa.
-	 * Complejidad O().
+	 * Complejidad O(1).
 	 */
 	public void setPuntuacion(int _puntuacion) {
 		this.puntuacion = _puntuacion;

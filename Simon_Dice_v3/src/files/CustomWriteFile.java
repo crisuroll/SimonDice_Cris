@@ -3,21 +3,33 @@ package files;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Clase CustomWriteFile. Se encarga de la escritura de los jugadores en el fichero.
+ * @author crisuroll
+ */
 public class CustomWriteFile extends FileWriter implements ICustomWriteFile {
-	/* Si una clase no implementa TODOS los metodos de la interfaz, la clase pasa a ser abstracta
-	 * DOS MÉTODOS DE ICustomReadFile IMPLEMENTADOS
-	 * - void closeWriteFile(): Cierra el fichero. Controlar excepción. "Excepcion capturada en X metodo de X clase".
-	 * - void writePlayers(String _chain). this.write(_chain);
-	 * USAN UNA CONSTRUCTORA SUPER
+	/**
+	 * Constructura CustomWriteFile.
+	 * @param fileName recibe el nombre del fichero.
+	 * @throws IOException
 	 */
-	private CustomWriteFile cwf = new CustomWriteFile("./src/data/top.txt");
 	public CustomWriteFile(String fileName) throws IOException {
 		super(fileName);
 	}
 	
+	/**
+	 * Metodo closeWriteFile(). Cierra el fichero utilizado.
+	 * Complejidad O(1).
+	 */
 	public void closeWriteFile() throws IOException {
-		this.cwf.close();
+		this.close();
 	}
+	
+	/**
+	 * Metodo writePlayers(). Recibe una cadena de jugadores y los agrega al fichero.
+	 * @param _chain recibe una cadena.
+	 * Complejidad O(n).
+	 */
 	public void writePlayers(String _chain) throws IOException {
 		this.write(_chain);
 	}
