@@ -17,14 +17,14 @@
 
 Se ha trabajado en este proyecto desde el 27/11/2023 hasta el 15/03/2024. A lo largo de estos meses se han desarrollado tres versiones distintas para el juego.
 
-### Simon Dice v1.0
+### [Simón Dice v1.0](https://github.com/crisuroll/SimonDice_Cris/tree/main/Simon_Dice_v1)
 - **Fecha:** 25/01/2024
 - **Descripción:** La primera versión contiene toda la estructura básica para que el juego funcione. Al comenzar, el programa le pide al usuario un nombre y tras ello le muestra un menú que le permitirá jugar una partida o salir. En esta versión solo existe la dificultad FACIL, que consta de los cuatro colores originales del Simón (ROJO, VERDE, AZUL, DORADO), secuencias de hasta 12 colores, y no existen las ayudas.
 
-### Simon Dice v2.0
+### [Simón Dice v2.0](https://github.com/crisuroll/SimonDice_Cris/tree/main/Simon_Dice_v2)
 - **Fecha:** 12/02/2024•	Fecha: 12/02/2024
-- **Descripción:** Se agrega una dificultad DIFICIL, que trae consigo tres nuevos colores (NARANJA, MARRON, BLANCO) y secuencias de hasta 15 colores. Además, ya se pueden utilizar hasta 3 ayudas tanto en FACIL como en DIFICIL.
+- **Descripción:** Se agrega una dificultad DIFICIL, que trae consigo tres nuevos colores (NARANJA, MARRON, BLANCO) y secuencias de hasta 15 colores. Además, ya se pueden utilizar hasta 3 ayudas tanto en FACIL como en DIFICIL. Por último, al finalizar la partida te muestra la puntuación conseguida.
 
-### Simon Dice v3.0
+### [Simón Dice v3.0](https://github.com/crisuroll/SimonDice_Cris/tree/main/Simon_Dice_v3)
 - **Fecha:** 15/03/2024
 - **Descripción:** Introduce los modos de ranking. Se crean jugadores con su puntuación y se guardan en un fichero de ranking, el cual el programa utiliza cuando el jugador seleccione una de las dos nuevas funciones del menú: TOP 10 y TOP 1.
