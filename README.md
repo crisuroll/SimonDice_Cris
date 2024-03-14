@@ -7,7 +7,10 @@
 ## Descripción
 "Simón Dice" es un juego que consiste en seguir una secuencia de colores y sonidos generada por una máquina, incrementando la dificultad conforme avanza el juego. Este proyecto se basa en dicho juego, pero programado en Java y listo para jugar en la consola de cualquier ordenador.
 
-![Simón Dice](https://github.com/crisuroll/SimonDice_Cris/blob/main/pics/SimonSays.jpg)
+<div style="text-align:center">
+  <img src="https://github.com/crisuroll/SimonDice_Cris/blob/main/pics/SimonSays.jpg" alt="Simón Dice">
+</div>
+
 
 ## Características
 
