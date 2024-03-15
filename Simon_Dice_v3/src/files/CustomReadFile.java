@@ -57,7 +57,7 @@ public class CustomReadFile extends FileReader implements ICustomReadFile {
 			Jugador j = new Jugador(nom);
 			j.setPuntuacion(punt);
 			this.miAL.add(j);
-			//this.sc.nextLine(); // Saltamos a la siguiente linea del fichero. Si no, da error.
+			this.sc.nextLine(); // Saltamos a la siguiente linea del fichero. Si no, da error.
 		}        
 		return this.miAL;
 	}

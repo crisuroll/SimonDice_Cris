@@ -23,7 +23,7 @@ public class Record {
 	 * Constructora Record.
 	 */
 	public Record() {
-		this.MAX_JUGADORES = 20;
+		this.MAX_JUGADORES = 10;
 		this.cont = 0;
 		this.arrJugadores = new Jugador[MAX_JUGADORES];
 	}
@@ -37,7 +37,7 @@ public class Record {
 			this.arrJugadores[this.cont] = _player;
 			this.cont++;
 		} else {
-			System.out.println("No es posible añadir más jugadores.");
+			this.arrJugadores[this.cont-1] = _player;
 		}
 	}
 	
@@ -85,7 +85,6 @@ public class Record {
 	 * Complejidad O(n).
 	 */
 	public void showBestPlayer() {
-		sortRanking();
 		int i = 0;
 	    while (i < this.cont && this.arrJugadores[i].getPuntuacion() == this.arrJugadores[0].getPuntuacion()) {
 			System.out.print(this.arrJugadores[i].getPuntuacion() + " " + this.arrJugadores[i].getNombre() + "\n");
@@ -100,7 +99,6 @@ public class Record {
 	 */
 	public void showRanking() throws IOException {
 		int i = 0;
-		sortRanking();
 		while (i < this.cont && i < 10) {
 			System.out.print(this.arrJugadores[i].getPuntuacion() + " " + this.arrJugadores[i].getNombre() + "\n");
 			i++;

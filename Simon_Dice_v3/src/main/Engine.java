@@ -380,6 +380,7 @@ public class Engine {
 								System.out.println("Puntuacion total: " + player.getPuntuacion());
 								System.out.println("¿Quieres jugar otra vez? || 1. Sí | 2. No ||");
 								sel = sc.nextInt();
+								rec.sortRanking();
 								rec.escribirRanking();
 							}
 						break;
@@ -390,16 +391,19 @@ public class Engine {
 								System.out.println("Puntuacion total: " + player.getPuntuacion());
 								System.out.println("¿Quieres jugar otra vez? || 1. Sí | 2. No ||");
 								sel = sc.nextInt();
+								rec.sortRanking();
 								rec.escribirRanking();
 							}
 						break;
 						case TOP10:
 							System.out.println("Mostrando el TOP 10:");
+							rec.sortRanking();
 							rec.showRanking();
 							System.out.println();
 						break;
 						case TOP1:
 							System.out.println("Mostrando el TOP 1:");
+							rec.sortRanking();
 							rec.showBestPlayer();
 							System.out.println();
 						break;
