@@ -371,6 +371,7 @@ public class Engine {
 					_modo = intToModo(menu());
 					switch (_modo) {
 						case SALIR:
+							rec.escribirRanking();
 							System.out.println("Saliendo del juego. Hasta la proxima...");
 						break;
 						case FACIL:
@@ -380,8 +381,6 @@ public class Engine {
 								System.out.println("Puntuacion total: " + player.getPuntuacion());
 								System.out.println("¿Quieres jugar otra vez? || 1. Sí | 2. No ||");
 								sel = sc.nextInt();
-								rec.sortRanking();
-								rec.escribirRanking();
 							}
 						break;
 						case DIFICIL:
@@ -391,8 +390,6 @@ public class Engine {
 								System.out.println("Puntuacion total: " + player.getPuntuacion());
 								System.out.println("¿Quieres jugar otra vez? || 1. Sí | 2. No ||");
 								sel = sc.nextInt();
-								rec.sortRanking();
-								rec.escribirRanking();
 							}
 						break;
 						case TOP10:
