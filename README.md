@@ -49,3 +49,9 @@ Se ha trabajado en este proyecto desde el 27/11/2023 hasta el 15/03/2024. A lo l
 <p align="center">
   <img src="https://github.com/crisuroll/SimonDice_Cris/blob/main/pics/7.PNG" alt="Ranking v3.0">
 </p>
+
+## Feedback y preguntas
+Para cualquier duda o sugerencia pueden contactar conmigo a través de mi correo: cristina.cg9@hotmail.com o de la plataforma Discord:
+
+  [![Discord Presence](https://lanyard.cnrad.dev/api/363326056306049027?showDisplayName=true&theme=light&bg=f3b7c1&hideBadges=true&hideTimestamp=true&hideStatus=true&idleMessage=Currently%20coding%20or%20gaming...)](https://discord.com/users/363326056306049027)
+
